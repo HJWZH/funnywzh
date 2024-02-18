@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>各类倒计时</title>
+  <style>
+  @font-face {
+    font-family: customFont;
+    src: url('/static/msyh.ttc') format('truetype');
+  }
+  body {
+    font-family: customFont, sans-serif;
+    text-align: center; /* 居中文本 */
+  }
+  h1 {
+    margin: 0; /* 清除默认的标题上下间距 */
+  }
+  </style>
+</head>
+<body>
+  <h1 id="countdown1"></h1>
+  <h1 id="countdown2"></h1>
+  <h1 id="current-time"></h1>
+  <script type="text/javascript">
+  function updateCountdown() {
+    // Current time
+    var now = new Date();
+    var currentTime = now.getTime();
+
+    // Countdown 1: June 17, 2024
+    var targetDate1 = new Date(2024, 5, 17);  // Note: Months are zero-based (0 = January)
+    var timeRemaining1 = targetDate1.getTime() - currentTime;
+
+    // Countdown 2: March 31, 2024 (if not past February 1, 2024)
+    var targetDate2 = new Date(2024, 2, 31);
+    var timeRemaining2 = (currentTime < new Date(2024, 1, 1).getTime()) ? targetDate2.getTime() - currentTime : targetDate2.getTime() - now.getTime();
+
+    // Display current time
+    var formattedCurrentTime = now.getFullYear() + '-' +
+                ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
+                ('0' + now.getDate()).slice(-2) + ' ' +
+                ('0' + now.getHours()).slice(-2) + ':' +
+                ('0' + now.getMinutes()).slice(-2) + ':' +
+                ('0' + now.getSeconds()).slice(-2) + '.' +
+                ('00' + now.getMilliseconds()).slice(-3);
+    document.getElementById("current-time").innerHTML = "当前时间：" + formattedCurrentTime;
+
+    // Display Countdown 1
+    if (timeRemaining1 > 0) {
+    var days1 = Math.floor(timeRemaining1 / (1000 * 60 * 60 * 24));
+    var hours1 = ('0' + Math.floor((timeRemaining1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).slice(-2);
+    var minutes1 = ('0' + Math.floor((timeRemaining1 % (1000 * 60 * 60)) / (1000 * 60))).slice(-2);
+    var seconds1 = ('0' + Math.floor((timeRemaining1 % (1000 * 60)) / 1000)).slice(-2);
+    var milliseconds1 = ('00' + (timeRemaining1 % 1000)).slice(-3);
+    document.getElementById("countdown1").innerHTML = "中考倒计时(2024.06.17)<br>" + days1 + "天 " + hours1 + "小时 " + minutes1 + "分钟 " + seconds1 + "秒 " + milliseconds1 + "毫秒<br><br>";
+    } else {
+    document.getElementById("countdown1").innerHTML = "中考倒计时(2024.06.17)<br>已到时间<br><br>";
+    }
+
+    // Display Countdown 2
+    if (timeRemaining2 > 0) {
+    var days2 = Math.floor(timeRemaining2 / (1000 * 60 * 60 * 24));
+    var hours2 = ('0' + Math.floor((timeRemaining2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).slice(-2);
+    var minutes2 = ('0' + Math.floor((timeRemaining2 % (1000 * 60 * 60)) / (1000 * 60))).slice(-2);
+    var seconds2 = ('0' + Math.floor((timeRemaining2 % (1000 * 60)) / 1000)).slice(-2);
+    var milliseconds2 = ('00' + (timeRemaining2 % 1000)).slice(-3);
+    document.getElementById("countdown2").innerHTML = "黄金60天倒计时(2024.2.1-2024.3.31)<br>" + days2 + "天 " + hours2 + "小时 " + minutes2 + "分钟 " + seconds2 + "秒 " + milliseconds2 + "毫秒<br><br>";
+    } else {
+    document.getElementById("countdown2").innerHTML = "黄金60天倒计时(2024.2.1-2024.3.31)<br>已到时间<br><br>";
+    }
+  }
+
+  // Initial call
+  updateCountdown();
+
+  // Update every 1 millisecond
+  setInterval(updateCountdown, 1);
+  </script>
+</body>
+</html>
