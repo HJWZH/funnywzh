@@ -30,7 +30,7 @@
     var currentTime = now.getTime();
 
     // Countdown 1: June 17, 2024
-    var targetDate1 = new Date(2024, 5, 17);  // Note: Months are zero-based (0 = January)
+    var targetDate1 = new Date(2024, 5, 13);  // Note: Months are zero-based (0 = January)
     var timeRemaining1 = targetDate1.getTime() - currentTime;
 
     // Countdown 2: March 31, 2024 (if not past February 1, 2024)
@@ -54,9 +54,9 @@
     var minutes1 = ('0' + Math.floor((timeRemaining1 % (1000 * 60 * 60)) / (1000 * 60))).slice(-2);
     var seconds1 = ('0' + Math.floor((timeRemaining1 % (1000 * 60)) / 1000)).slice(-2);
     var milliseconds1 = ('00' + (timeRemaining1 % 1000)).slice(-3);
-    document.getElementById("countdown1").innerHTML = "中考倒计时(2024.06.17)<br>" + days1 + "天 " + hours1 + "小时 " + minutes1 + "分钟 " + seconds1 + "秒 " + milliseconds1 + "毫秒<br><br>";
+    document.getElementById("countdown1").innerHTML = "中考倒计时(2024.06.13)<br>" + days1 + "天 " + hours1 + "小时 " + minutes1 + "分钟 " + seconds1 + "秒 " + milliseconds1 + "毫秒<br><br>";
     } else {
-    document.getElementById("countdown1").innerHTML = "中考倒计时(2024.06.17)<br>已到时间<br><br>";
+    document.getElementById("countdown1").innerHTML = "中考倒计时(2024.06.13)<br>已到时间<br><br>";
     }
 
     // Display Countdown 2
